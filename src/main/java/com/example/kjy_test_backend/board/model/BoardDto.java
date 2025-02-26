@@ -52,14 +52,14 @@ public class BoardDto {
         private Long idx;
         private String title;
         private String writer;
-        private List<CommentDto.CommentResponse> comments;
+        private int commentCount;
 
         public static BoardListResponse from(Board board) {
             return BoardListResponse.builder()
                     .idx(board.getIdx())
                     .title(board.getTitle())
                     .writer(board.getWriter())
-                    .comments(board.getComments().stream().toList().stream().map(CommentDto.CommentResponse::from).collect(Collectors.toList()))
+                    .commentCount(board.getComments().size())
                     .build();
         }
     }
