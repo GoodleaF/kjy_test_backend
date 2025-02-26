@@ -33,9 +33,8 @@ public class BoardController {
             description = "게시글 번호, 제목, 작성자, 댓글의 수를 출력"
     )
     @GetMapping("/list")
-    public ResponseEntity<List<BoardDto.BoardListResponse>> list(int page, int size) {
-        List<BoardDto.BoardListResponse> response = boardService.list(page, size);
-
+    public ResponseEntity<BoardDto.BoardListPageResponse> list(@RequestParam int page, @RequestParam int size) {
+        BoardDto.BoardListPageResponse response = boardService.list(page, size);
         return ResponseEntity.ok(response);
     }
 

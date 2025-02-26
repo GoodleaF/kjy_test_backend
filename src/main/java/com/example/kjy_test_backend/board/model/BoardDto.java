@@ -68,6 +68,16 @@ public class BoardDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
+    public static class BoardListPageResponse {
+        private List<BoardListResponse> boards;
+        private int totalPages;
+    }
+
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
     public static class BoardReadResponse {
         private Long idx;
         private String title;
