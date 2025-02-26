@@ -24,5 +24,5 @@ public class Board {
     private String writer;
 
     @OneToMany(mappedBy = "board")
-    private List<Comment> sectionList = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 }
