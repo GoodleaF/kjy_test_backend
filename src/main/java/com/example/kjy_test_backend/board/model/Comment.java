@@ -1,6 +1,5 @@
-package com.example.kjy_test_backend.comment.model;
+package com.example.kjy_test_backend.board.model;
 
-import com.example.kjy_test_backend.board.model.Board;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package com.example.kjy_test_backend.board;
 
-import com.example.kjy_test_backend.board.model.Board;
 import com.example.kjy_test_backend.board.model.BoardDto;
+import com.example.kjy_test_backend.board.model.CommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +31,12 @@ public class BoardController {
     @GetMapping("/{boardIdx}")
     public ResponseEntity<BoardDto.BoardReadResponse> read(@PathVariable Long boardIdx) {
         BoardDto.BoardReadResponse response = boardService.read(boardIdx);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{boardIdx}/register")
+    public ResponseEntity<CommentDto.CommentResponse> registerComment(@RequestBody CommentDto.CommentRegister dto, @PathVariable Long boardIdx){
+        CommentDto.CommentResponse response = boardService.registerComment(dto, boardIdx);
         return ResponseEntity.ok(response);
     }
 }

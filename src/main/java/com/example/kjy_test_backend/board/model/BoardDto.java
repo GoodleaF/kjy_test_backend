@@ -1,13 +1,10 @@
 package com.example.kjy_test_backend.board.model;
 
-import com.example.kjy_test_backend.comment.model.Comment;
-import com.example.kjy_test_backend.comment.model.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
