@@ -34,8 +34,9 @@ public class BoardService {
     }
 
     public CommentDto.CommentResponse registerComment(CommentDto.CommentRegister dto, Long boardIdx) {
-        Board board = boardRepository.findById(boardIdx).orElseThrow();
+        Board board = boardRepository.getReferenceById(boardIdx);
         Comment comment = commentRepository.save(dto.toEntity(board));
         return CommentDto.CommentResponse.from(comment);
     }
+
 }
