@@ -5,6 +5,8 @@ import com.example.kjy_test_backend.board.model.BoardDto;
 import com.example.kjy_test_backend.board.model.Comment;
 import com.example.kjy_test_backend.board.model.CommentDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,10 +24,16 @@ public class BoardService {
         return BoardDto.BoardRegisterResponse.from(board);
     }
 
-    public List<BoardDto.BoardListResponse> list(int page, int size) {
-        List<Board> boardList = boardRepository.findAll();
-
-        return boardList.stream().map(BoardDto.BoardListResponse::from).collect(Collectors.toList());
+    public BoardDto.BoardListPageResponse list(int page, int size) {
+        Page<Board> boardPage = boardRepository.findAll(PageRequest.of(page, size));
+        List<BoardDto.BoardListResponse> boards = boardPage.getContent()
+                .stream()
+                .map(BoardDto.BoardListResponse::from)
+                .collect(Collectors.toList());
+        return BoardDto.BoardListPageResponse.builder()
+                .boards(boards)
+                .totalPages(boardPage.getTotalPages())
+                .build();
     }
 
     public BoardDto.BoardReadResponse read(Long boardIdx) {
