@@ -22,15 +22,15 @@ public class BoardController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<BoardDto.BoardRegisterResponse>> list(int page, int size) {
-        List<BoardDto.BoardRegisterResponse> response = boardService.list(page, size);
+    public ResponseEntity<List<BoardDto.BoardListResponse>> list(int page, int size) {
+        List<BoardDto.BoardListResponse> response = boardService.list(page, size);
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{boardIdx}")
-    public ResponseEntity<BoardDto.BoardRegisterResponse> read(@PathVariable Long boardIdx) {
-        BoardDto.BoardRegisterResponse response = boardService.read(boardIdx);
+    public ResponseEntity<BoardDto.BoardReadResponse> read(@PathVariable Long boardIdx) {
+        BoardDto.BoardReadResponse response = boardService.read(boardIdx);
         return ResponseEntity.ok(response);
     }
 }

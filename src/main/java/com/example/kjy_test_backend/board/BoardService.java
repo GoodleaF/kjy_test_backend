@@ -22,14 +22,14 @@ public class BoardService {
         return BoardDto.BoardRegisterResponse.from(board);
     }
 
-    public List<BoardDto.BoardRegisterResponse> list(int page, int size) {
+    public List<BoardDto.BoardListResponse> list(int page, int size) {
         List<Board> boardList = boardRepository.findAll();
 
-        return boardList.stream().map(BoardDto.BoardRegisterResponse::from).collect(Collectors.toList());
+        return boardList.stream().map(BoardDto.BoardListResponse::from).collect(Collectors.toList());
     }
 
-    public BoardDto.BoardRegisterResponse read(Long boardIdx) {
+    public BoardDto.BoardReadResponse read(Long boardIdx) {
         Board board = boardRepository.findById(boardIdx).orElseThrow();
-        return BoardDto.BoardRegisterResponse.from(board);
+        return BoardDto.BoardReadResponse.from(board);
     }
 }

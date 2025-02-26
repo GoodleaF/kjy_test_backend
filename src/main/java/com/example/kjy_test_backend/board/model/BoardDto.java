@@ -17,7 +17,6 @@ public class BoardDto {
         private String title;
         private String content;
         private String writer;
-        List<Comment> comments = new ArrayList<>();
 
         public Board toEntity() {
             return Board.builder()
@@ -37,10 +36,50 @@ public class BoardDto {
         private String title;
         private String content;
         private String writer;
-        private List<CommentDto.CommentResponse> comments;
 
         public static BoardRegisterResponse from(Board board) {
             return BoardRegisterResponse.builder()
+                    .idx(board.getIdx())
+                    .title(board.getTitle())
+                    .content(board.getContent())
+                    .writer(board.getWriter())
+                    .build();
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class BoardListResponse {
+        private Long idx;
+        private String title;
+        private String writer;
+        private List<CommentDto.CommentResponse> comments;
+
+        public static BoardListResponse from(Board board) {
+            return BoardListResponse.builder()
+                    .idx(board.getIdx())
+                    .title(board.getTitle())
+                    .writer(board.getWriter())
+                    .comments(board.getComments().stream().toList().stream().map(CommentDto.CommentResponse::from).collect(Collectors.toList()))
+                    .build();
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class BoardReadResponse {
+        private Long idx;
+        private String title;
+        private String content;
+        private String writer;
+        private List<CommentDto.CommentResponse> comments;
+
+        public static BoardReadResponse from(Board board) {
+            return BoardReadResponse.builder()
                     .idx(board.getIdx())
                     .title(board.getTitle())
                     .content(board.getContent())
